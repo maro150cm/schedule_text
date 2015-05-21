@@ -1,0 +1,20 @@
+<h1>Listing</h1>
+<%= link_to 'Add', new_partdate_path %>
+<table>
+    <tr>
+        <td>PartNumber</td>
+        <td>StartTime</td>
+        <td>EndTime</td>
+        <td></td>
+        <td></td>
+    </tr>
+    <% @partdates.each do |partdate| %>
+        <tr>
+            <td><%= partdate.part_number %></td>
+            <td><%= partdate.start_time.strftime("%H:%M") %></td>
+            <td><%= partdate.end_time.strftime("%H:%M") %></td>
+            <td><%= link_to 'Edit', edit_partdate_path(partdate) %></td>
+            <td><%= link_to 'Delete',partdate_path(partdate), method: :delete, data: { confirm: 'Are you OK?' } %></td>
+        </tr>
+    <% end %>
+</table>

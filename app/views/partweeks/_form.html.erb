@@ -1,0 +1,7 @@
+<%= form_for(@partweek) do |f| %>
+    <%= f.label :day_number %><br>
+    <%= f.number_field :day_number %><br>
+    <%= f.label :week_name %><br>
+    <%= f.text_field :week_name %><br>
+    <%= f.submit %>
+<% end %>

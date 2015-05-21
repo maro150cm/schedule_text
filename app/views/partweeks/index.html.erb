@@ -1,0 +1,18 @@
+<h1>Listing</h1>
+<%= link_to 'Add', new_partweek_path %>
+<table>
+    <tr>
+        <td>DayNumber</td>
+        <td>WeekName</td>
+        <td></td>
+        <td></td>
+    </tr>
+    <% @partweeks.each do |partweek| %>
+        <tr>
+            <td><%= partweek.day_number %></td>
+            <td><%= partweek.week_name %></td>
+            <td><%= link_to 'Edit', edit_partweek_path(partweek) %></td>
+            <td><%= link_to 'Delete',partweek_path(partweek), method: :delete, data: { confirm: 'Are you OK?' } %></td>
+        </tr>
+    <% end %>
+</table>
