@@ -1,0 +1,26 @@
+<h1>Listing</h1>
+<%= link_to 'Add', new_course_path %>
+<table>
+    <tr>
+        <td>CourseID</td>
+        <td>CourseName</td>
+        <td>LearnPoint</td>
+        <td>TeacherName</td>
+        <td>Week</td>
+        <td>Part</td>
+        <td></td>
+        <td></td>
+    </tr>
+    <% @courses.each do |course| %>
+        <tr>
+            <td><%= course.course_id %></td>
+            <td><%= course.course_name %></td>
+            <td><%= course.learn_point %></td>
+            <td><%= course.teacher_name %></td>
+            <td><%= course.partweek.week_name %></td>
+            <td><%= course.partdate.part_number %></td>
+            <td><%= link_to 'Edit', edit_course_path(course) %></td>
+            <td><%= link_to 'Delete',course_path(course), method: :delete, data: { confirm: 'Are you OK?' } %></td>
+        </tr>
+    <% end %>
+</table>

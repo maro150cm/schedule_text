@@ -1,0 +1,15 @@
+<%= form_for(@course) do |f| %>
+    <%= f.label "Id" %><br>
+    <%= f.text_field :course_id %><br>
+    <%= f.label "Name" %><br>
+    <%= f.text_field :course_name %><br>
+    <%= f.label "Learn_point" %><br>
+    <%= f.number_field :learn_point %><br>
+    <%= f.label "Teacher_name" %><br>
+    <%= f.text_field :teacher_name %><br>
+    <%= f.label "Part_week" %><br>
+    <%= f.collection_select(:partweek_id,Partweek.all,:id,:week_name) %><br>
+    <%= f.label "Part_time" %><br>
+    <%= f.collection_select(:partdate_id,Partdate.all,:id,:part_number) %><br>
+    <%= f.submit %>
+<% end %>
