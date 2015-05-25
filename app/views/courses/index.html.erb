@@ -1,6 +1,7 @@
 <h1>Listing</h1>
-<%= link_to 'Add', new_course_path %>
-<table>
+<%= link_to 'Add', new_course_path,class:'btn btn-info' %><br /><br />
+
+<table class="table table-hover">
     <tr>
         <td>CourseID</td>
         <td>CourseName</td>
@@ -19,8 +20,35 @@
             <td><%= course.teacher_name %></td>
             <td><%= course.partweek.week_name %></td>
             <td><%= course.partdate.part_number %></td>
-            <td><%= link_to 'Edit', edit_course_path(course) %></td>
-            <td><%= link_to 'Delete',course_path(course), method: :delete, data: { confirm: 'Are you OK?' } %></td>
+            <td><%= link_to 'Edit', edit_course_path(course),class:'btn btn-success' %></td>
+            <td><%= link_to 'Delete',course_path(course), method: :delete, data: { confirm: 'Are you OK?' },class:'btn btn-warning' %></td>
+        </tr>
+    <% end %>
+</table>
+<br /><br /><br /><br /><br />
+
+<table class="table">
+    <tr>
+        <td></td>
+        <% @partweeks.each do |partweek| %>
+            <td><%= partweek.week_name %></td>
+        <% end %>    
+    </tr>
+    <% @partdates.each do |partdate| %>
+        <tr>
+            <td style="text-align:center;height:60px;width:150px;"><%= partdate.start_time.strftime("%H:%M")+"~"+partdate.end_time.strftime("%H:%M") %></td>
+            <% @partweeks.each do |partweek| %>
+                <td>
+                    <% @run=show_course(partdate.part_number,partweek.day_number) %>
+                    <!-- http://stackoverflow.com/questions/885414/a-concise-explanation-of-nil-v-empty-v-blank-in-ruby-on-rails -->
+                    <% if @run.blank? %>
+                        <%= "" %>
+                    <% else %>
+                        <%= @run.course_id %><br/>
+                        <%= @run.course_name %><br/>
+                    <% end %>
+                </td>
+            <% end %>
         </tr>
     <% end %>
 </table>

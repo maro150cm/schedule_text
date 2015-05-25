@@ -1,7 +1,10 @@
 class CoursesController < ApplicationController
-before_action :set_course, only: [:edit, :update,:destroy]
+    before_action :set_course, only: [:edit, :update,:destroy]
+    
     def index
         @courses = Course.all
+        @partdates = Partdate.all
+        @partweeks = Partweek.all
     end
     def new
         @course = Course.new
@@ -29,7 +32,7 @@ before_action :set_course, only: [:edit, :update,:destroy]
     end
     private
         def set_course
-            @course = course.find(params[:id])
+            @course = Course.find(params[:id])
         end
         def course_params
             params.require(:course).permit(:course_id,:course_name,:learn_point,:teacher_name,:partweek_id,:partdate_id)
